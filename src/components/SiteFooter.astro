@@ -1,0 +1,37 @@
+<footer class="site-footer" id="contact">
+  <div class="container footer-inner">
+    <p>© {new Date().getFullYear()} Dana. All rights reserved.</p>
+    <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  a {
+    font-weight: 650;
+  }
+
+  @media (max-width: 32rem) {
+    .footer-inner {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

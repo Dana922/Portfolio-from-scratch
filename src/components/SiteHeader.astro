@@ -1,0 +1,76 @@
+---
+const navItems = [
+  { label: 'Work', href: '#work' },
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Dana portfolio, home">Dana</a>
+
+    <nav aria-label="Primary navigation">
+      <ul>
+        {navItems.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.94);
+  }
+
+  .header-inner {
+    display: flex;
+    min-height: 5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .brand {
+    color: var(--color-ink);
+    font-size: 1.125rem;
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: clamp(1rem, 3vw, 2rem);
+    list-style: none;
+  }
+
+  nav a {
+    color: var(--color-text);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 32rem) {
+    .header-inner {
+      min-height: 4.5rem;
+      gap: 1rem;
+    }
+
+    ul {
+      gap: 0.85rem;
+    }
+  }
+</style>
