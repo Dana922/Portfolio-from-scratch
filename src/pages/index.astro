@@ -1,65 +1,9 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'; import ProjectCard from '../components/ProjectCard.astro';
 ---
-
-<BaseLayout
-  title="Dana — Product Designer"
-  description="Product designer simplifying complex healthcare, insurance, and accessibility experiences."
->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="container">
-      <p class="eyebrow">Product designer</p>
-      <h1 id="hero-title">Simplifying complex, high-stakes experiences.</h1>
-      <p class="hero-summary">
-        I design thoughtful, accessible digital products across healthcare,
-        insurance, and emerging AI experiences.
-      </p>
-      <div class="button-row">
-        <a class="button" href="#work">View selected work</a>
-        <a class="button button--secondary" href="#about">About me</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="placeholder-section" id="work" aria-labelledby="work-title">
-    <div class="container">
-      <p class="eyebrow">Selected work</p>
-      <h2 id="work-title">Case studies are the next build step.</h2>
-      <p>
-        This section will feature the medical claim redesign, pre-treatment
-        estimates, and Dialogue account-management portal.
-      </p>
-    </div>
-  </section>
-
-  <section class="placeholder-section" id="about" aria-labelledby="about-title">
-    <div class="container">
-      <p class="eyebrow">About</p>
-      <h2 id="about-title">Design grounded in empathy, systems, and evidence.</h2>
-      <p>
-        The complete professional biography and capabilities will be added after
-        the project stories establish the portfolio's main narrative.
-      </p>
-    </div>
-  </section>
-
-  <style>
-    .hero {
-      display: grid;
-      min-height: min(48rem, calc(100vh - 5rem));
-      align-items: center;
-      padding: clamp(5rem, 12vw, 10rem) 0;
-      background:
-        radial-gradient(circle at 84% 18%, rgba(36, 88, 198, 0.12), transparent 28rem),
-        linear-gradient(180deg, #fff 0%, #f8faff 100%);
-    }
-
-    .hero-summary {
-      max-width: 39rem;
-      margin-bottom: 2rem;
-      color: var(--color-text);
-      font-size: clamp(1.125rem, 2.3vw, 1.4rem);
-      line-height: 1.55;
-    }
-  </style>
+<BaseLayout title="Dana — Product Designer" description="Product designer simplifying complex healthcare, insurance, and accessibility experiences.">
+<section class="hero" aria-labelledby="hero-title"><div class="container hero-grid"><div><p class="eyebrow">Product designer · Healthcare · Accessibility</p><h1 id="hero-title">Making complex systems feel clear and human.</h1><p class="summary">Hi, I’m Dana. I’m a UX and product designer focused on making healthcare, insurance, and other high-stakes digital services easier to understand and use.</p><div class="button-row"><a class="button" href="#work">View selected work</a><a class="button button--secondary" href="#about">About me</a></div></div><aside class="proof" aria-label="Professional highlights"><p>Designing released products within complex, regulated environments.</p><dl><div><dt>10M+</dt><dd>users served by the Canada Life platform</dd></div><div><dt>5+ years</dt><dd>across UX, product design, and digital experiences</dd></div><div><dt>Current focus</dt><dd>accessible products, creative AI, and front-end prototyping</dd></div></dl></aside></div></section>
+<section class="work" id="work" aria-labelledby="work-title"><div class="container"><div class="section-heading"><p class="eyebrow">Selected work</p><h2 id="work-title">Released products shaped around real user needs.</h2><p>Enterprise healthcare and account-management work spanning discovery, interaction design, accessibility, and delivery.</p></div><div class="projects"><ProjectCard number="01" organization="Canada Life" title="Redesigning the medical claim experience" summary="A guided, responsive, and accessible reimbursement journey for plan members submitting medical expenses and supporting documents." meta={['End-to-end UX','Responsive web','Accessibility','Released']} tone="navy"/><ProjectCard number="02" organization="Canada Life" title="Making pre-treatment estimates easier to find and track" summary="Improving access to expected coverage information for members making time-sensitive healthcare and financial decisions." meta={['Lead UX','Research synthesis','Information architecture','Released']} tone="blue"/><ProjectCard number="03" organization="Dialogue" title="Designing a clearer account-management portal" summary="Separating internal operations from customer self-service while organizing company profiles, billing, and subscription information." meta={['Product design','User interviews','Information architecture','B2B']} tone="teal"/></div></div></section>
+<section class="placeholder-section" id="about" aria-labelledby="about-title"><div class="container"><p class="eyebrow">About</p><h2 id="about-title">Design grounded in empathy, systems, and evidence.</h2><p>The complete professional biography and capabilities will be added after the project stories establish the portfolio’s main narrative.</p></div></section>
+<style>.hero{display:grid;min-height:min(48rem,calc(100vh - 5rem));align-items:center;padding:clamp(5rem,12vw,10rem) 0;background:radial-gradient(circle at 84% 18%,rgba(36,88,198,.12),transparent 28rem),linear-gradient(180deg,#fff,#f8faff)}.hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(18rem,.7fr);align-items:end;gap:clamp(3rem,8vw,8rem)}.summary{max-width:39rem;margin-bottom:2rem;font-size:clamp(1.125rem,2.3vw,1.4rem);line-height:1.55}.proof{padding:clamp(1.5rem,3vw,2.25rem);border:1px solid rgba(36,88,198,.16);border-radius:1.4rem;background:rgba(255,255,255,.78);box-shadow:0 1.25rem 4rem rgba(21,36,59,.08)}.proof>p{margin-bottom:1.5rem;color:var(--color-ink);font-weight:650}dl{margin:0}dl div{padding:1.15rem 0;border-top:1px solid var(--color-border)}dt{margin-bottom:.2rem;color:var(--color-ink);font-size:1.25rem;font-weight:750}dd{margin:0;color:var(--color-muted);font-size:.9rem;line-height:1.5}.work{padding:clamp(5rem,11vw,10rem) 0}.projects{display:grid;gap:clamp(1.5rem,4vw,3rem)}@media(max-width:52rem){.hero-grid{grid-template-columns:1fr;align-items:start}.proof{max-width:35rem}}</style>
 </BaseLayout>
