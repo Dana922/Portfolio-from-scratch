@@ -1,7 +1,7 @@
 <footer class="site-footer" id="contact">
   <div class="container footer-inner">
     <p>© {new Date().getFullYear()} Dana. All rights reserved.</p>
-    <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    <div class="footer-links"><a href="mailto:forough.dabagh0@gmail.com">Email</a><a href="https://www.linkedin.com/in/dana-forough-dabagh-71885880/" target="_blank" rel="noreferrer">LinkedIn</a><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div>
   </div>
 </footer>
 
@@ -28,8 +28,10 @@
     font-weight: 650;
   }
 
+  .footer-links { display:flex; flex-wrap:wrap; gap:1.25rem; }
+
   @media (max-width: 32rem) {
-    .footer-inner {
+    .footer-inner, .footer-links {
       align-items: flex-start;
       flex-direction: column;
     }
