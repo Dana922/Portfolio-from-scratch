@@ -168,3 +168,12 @@ h2 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* At-a-glance summary used at the top of every case study */
+main section.tldr { padding: clamp(2.5rem, 5vw, 4rem) 0; border-bottom: 1px solid var(--color-border); background: #fff; }
+main .tldr .eyebrow { margin-bottom: 1.25rem; }
+main .tldr-list { display: grid; margin: 0; padding: 0; gap: 0; list-style: none; border-top: 1px solid var(--color-border); }
+main .tldr-list li { display: grid; grid-template-columns: 9rem 1fr; padding: 1.1rem 0; border: 0; border-bottom: 1px solid var(--color-border); border-radius: 0; gap: 1.5rem; color: var(--color-text); font-size: 1.05rem; font-weight: 400; line-height: 1.55; }
+main .tldr-list b { color: var(--color-ink); font-size: .85rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+main .tldr-list span { max-width: 52rem; color: var(--color-text); font-size: 1.05rem; font-weight: 400; }
+@media (max-width: 40rem) { main .tldr-list li { grid-template-columns: 1fr; gap: .25rem; } }
