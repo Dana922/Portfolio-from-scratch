@@ -1,7 +1,7 @@
 ---
 interface Props { number: string; title: string; summary: string; organization: string; meta: string[]; tone: string; href?: string; image?: string; }
 const { number, title, summary, organization, meta, tone, image, href: suppliedHref } = Astro.props;
-const href = suppliedHref;
+const href = suppliedHref ?? (number === '01' ? '/work/medical-claims/' : undefined);
 ---
 <article class={`card ${tone}`}><div class={`visual ${image ? 'visual--image' : ''}`} aria-hidden="true"><span>{number}</span>{image ? <img src={image} alt="" loading="lazy"/> : <strong>{organization}</strong>}</div><div class="content"><p class="org">{organization}</p><h3>{title}</h3><p>{summary}</p><ul aria-label="Project details">{meta.map((item) => <li>{item}</li>)}</ul>{href ? <a class="case-link" href={href}>Read case study <span aria-hidden="true">→</span></a> : <p class="status">Full case study coming next</p>}</div></article>
 <style>
