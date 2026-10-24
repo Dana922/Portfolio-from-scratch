@@ -28,6 +28,64 @@ const { title, description } = Astro.props;
       <slot />
     </main>
     <SiteFooter />
+    <dialog class="image-lightbox" id="image-lightbox" aria-label="Expanded image">
+      <button class="image-lightbox__close" type="button" aria-label="Close expanded image">×</button>
+      <figure>
+        <img src="" alt="" />
+        <figcaption></figcaption>
+      </figure>
+    </dialog>
+    <script is:inline>
+      (() => {
+        const dialog = document.querySelector('#image-lightbox');
+        const expandedImage = dialog?.querySelector('img');
+        const caption = dialog?.querySelector('figcaption');
+        const closeButton = dialog?.querySelector('.image-lightbox__close');
+        let previouslyFocused;
+
+        if (!dialog || !expandedImage || !caption || !closeButton) return;
+
+        const close = () => {
+          dialog.close();
+          if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus();
+        };
+
+        const open = (image) => {
+          previouslyFocused = document.activeElement;
+          expandedImage.src = image.currentSrc || image.src;
+          expandedImage.alt = image.alt || '';
+          caption.textContent = image.alt || '';
+          caption.hidden = !image.alt;
+          dialog.showModal();
+          closeButton.focus();
+        };
+
+        document.querySelectorAll('main img:not([data-no-lightbox])').forEach((image) => {
+          image.classList.add('lightbox-enabled');
+          if (!image.closest('button')) {
+            image.tabIndex = 0;
+            image.setAttribute('role', 'button');
+            image.setAttribute('aria-label', image.alt ? `Enlarge image: ${image.alt}` : 'Enlarge image');
+          }
+          image.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            open(image);
+          });
+          image.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              open(image);
+            }
+          });
+        });
+
+        closeButton.addEventListener('click', close);
+        dialog.addEventListener('click', (event) => {
+          if (event.target === dialog) close();
+        });
+      })();
+    </script>
   </body>
 </html>
 
@@ -47,5 +105,82 @@ const { title, description } = Astro.props;
 
   .skip-link:focus {
     transform: translateY(0);
+  }
+
+  main img.lightbox-enabled {
+    cursor: zoom-in;
+  }
+
+  main img.lightbox-enabled:focus-visible {
+    outline: 0.2rem solid var(--color-accent);
+    outline-offset: 0.2rem;
+  }
+
+  .image-lightbox {
+    width: auto;
+    max-width: min(92vw, 80rem);
+    max-height: 90vh;
+    margin: auto;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 1rem;
+    background: transparent;
+    box-shadow: 0 2rem 6rem rgba(7, 15, 28, 0.35);
+  }
+
+  .image-lightbox::backdrop {
+    background: rgba(21, 36, 59, 0.72);
+    backdrop-filter: blur(0.2rem);
+  }
+
+  .image-lightbox figure {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: #fff;
+  }
+
+  .image-lightbox img {
+    width: auto;
+    max-width: min(92vw, 80rem);
+    max-height: 82vh;
+    object-fit: contain;
+  }
+
+  .image-lightbox figcaption {
+    padding: 0.75rem 1rem;
+    color: var(--color-text);
+    background: #fff;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .image-lightbox__close {
+    position: absolute;
+    z-index: 2;
+    top: -0.9rem;
+    right: -0.9rem;
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    padding: 0;
+    border: 0.15rem solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    background: var(--color-ink);
+    box-shadow: 0 0.5rem 1.5rem rgba(7, 15, 28, 0.28);
+    font-size: 1.65rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  @media (max-width: 40rem) {
+    .image-lightbox__close {
+      top: 0.5rem;
+      right: 0.5rem;
+    }
   }
 </style>
